@@ -8,6 +8,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --bs-primary: #8B1F3F;
+            --bs-secondary: #C7254E;
+            --bs-bg-primay-rgb: 139, 31, 63;
+        }
+
+        :root,
+        [data-bs-theme=light] {
+            --bs-body-color: #8B1F3F;
+            --bs-body-bg: #f8f9fa;
+            --bs-body-color-rgb: 139, 31, 63;
+        }
+
+        .bg-primary {
+            background-color: #8B1F3F !important;
+        }
+
+        .btn-primary {
+            background-color: #8B1F3F;
+            border-color: #8B1F3F;
+        }
+
+        .text-primary {
+            color: #8B1F3F !important;
+        }
+
         .bg-gradient-custom {
             background: linear-gradient(to bottom right, rgba(139, 31, 63, 0.1), rgba(199, 37, 78, 0.1));
         }
@@ -26,6 +52,18 @@
         .btn-gradient:hover {
             background: linear-gradient(to right, #7A1B37, #B32147);
         }
+
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+        }
+
+        .from-[#8B1F3F] {
+            --tw-gradient-from: #8B1F3F;
+        }
+
+        .to-[#C7254E] {
+            --tw-gradient-to: #C7254E;
+        }
     </style>
 </head>
 
@@ -34,8 +72,7 @@
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/winesbot-BfMhiBwe8HhdMEUTsUNR934qkypV89.jpeg"
-                        alt="WinesBot Logo" width="40" height="40" class="me-2">
+                    <img src="winesbot.jpeg" alt="WinesBot Logo" width="40" height="40" class="me-2">
                     <span class="fs-4 fw-bold text-gradient">WinesBot</span>
                 </a>
 
@@ -65,37 +102,88 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="card bg-white bg-opacity-75">
-                            <div class="card-body">
-                                <h5 class="card-title text-gradient">WinesBot in Action</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">See how WinesBot assists customers</h6>
-                                <div class="mt-4">
-                                    <div class="d-flex mb-3">
-                                        <i class="fas fa-users text-primary me-2"></i>
-                                        <p class="mb-0"><small>Customer: I'm looking for a wine to pair with grilled
-                                                steak.</small></p>
-                                    </div>
-                                    <div class="d-flex mb-3">
-                                        <i class="fas fa-robot text-primary me-2"></i>
-                                        <p class="mb-0 bg-light p-2 rounded"><small>Great choice! For grilled steak, I'd
-                                                recommend a bold red wine. A Cabernet Sauvignon or Malbec would pair
-                                                excellently. These wines have robust tannins that complement the rich
-                                                flavors of the steak. Would you like some specific bottle
-                                                recommendations from our shop's inventory?</small></p>
-                                    </div>
-                                    <div class="d-flex mb-3">
-                                        <i class="fas fa-users text-primary me-2"></i>
-                                        <p class="mb-0"><small>Customer: Yes, please recommend a Cabernet
-                                                Sauvignon.</small></p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <i class="fas fa-robot text-primary me-2"></i>
-                                        <p class="mb-0 bg-light p-2 rounded"><small>Excellent! Based on our current
-                                                inventory, I'd recommend the 2018 Napa Valley Reserve Cabernet
-                                                Sauvignon. It has rich flavors of blackberry and cassis with hints of
-                                                oak. It's located on Aisle 3, Shelf B. Would you like me to call a staff
-                                                member to assist you further?</small></p>
+                            <div
+                                class="card-header bg-gradient-to-r from-[#8B1F3F] to-[#C7254E] text-white rounded-top">
+                                <h5 class="card-title mb-0 text-white">WinesBot in Action</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="position-relative">
+                                    <div class="position-absolute inset-0 bg-dark opacity-10 rounded-bottom"></div>
+                                    <div class="overflow-auto" style="height: 400px;">
+                                        <div class="p-3">
+                                            <div class="d-flex mb-3">
+                                                <div class="flex-shrink-0 me-2">
+                                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                        style="width: 32px; height: 32px;">
+                                                        <i class="fas fa-user text-white small"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="bg-gradient-custom rounded p-2 d-inline-block">
+                                                        <p class="mb-0 small">I'm looking for a wine to pair with
+                                                            grilled steak.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end mb-3">
+                                                <div class="flex-grow-1 text-end">
+                                                    <div class="bg-primary text-white rounded p-2 d-inline-block">
+                                                        <p class="mb-0 small">Great choice! For grilled steak, I'd
+                                                            recommend a bold red wine. A Cabernet Sauvignon or Malbec
+                                                            would pair excellently. These wines have robust tannins that
+                                                            complement the rich flavors of the steak. Would you like
+                                                            some specific bottle recommendations from our shop's
+                                                            inventory?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                        style="width: 32px; height: 32px;">
+                                                        <i class="fas fa-robot text-white small"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex mb-3">
+                                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 32px; height: 32px;">
+                                                    <i class="fas fa-user text-white small"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="bg-gradient-custom rounded p-2 d-inline-block">
+                                                        <p class="mb-0 small">Yes, please recommend a Cabernet
+                                                            Sauvignon.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end mb-3">
+                                                <div class="flex-grow-1 text-end">
+                                                    <div class="bg-primary text-white rounded p-2 d-inline-block">
+                                                        <p class="mb-0 small">Excellent! Based on our current inventory,
+                                                            I'd recommend the 2018 Napa Valley Reserve Cabernet
+                                                            Sauvignon. It has rich flavors of blackberry and cassis with
+                                                            hints of oak. It's located on Aisle 3, Shelf B. Would you
+                                                            like me to call a staff member to assist you further?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-2">
+                                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                                                        style="width: 32px; height: 32px;">
+                                                        <i class="fas fa-robot text-white small"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <form class="d-flex">
+                                    <input type="text" class="form-control me-2" placeholder="Type your message...">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span class="visually-hidden">Send message</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
