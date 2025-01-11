@@ -15,6 +15,220 @@
             --bs-primary: #8B1F3F;
             --bs-secondary: #C7254E;
             --bs-bg-primay-rgb: 139, 31, 63;
+            --card-bg: #ffffff;
+            --text-dark: #1a2634;
+            --text-muted: #495057;
+            --hover-bg: rgba(139, 31, 63, 0.08);
+            --list-text: #2c3e50;
+            --card-border: rgba(139, 31, 63, 0.15);
+            --icon-color: #8B1F3F;
+        }
+
+        /* Base text colors */
+        body {
+            color: var(--text-dark);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+        }
+
+        /* Enhanced card styling */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(139, 31, 63, 0.2);
+            background: var(--hover-bg);
+        }
+
+        /* List item styling */
+        .feature-list li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            color: var(--list-text);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list li:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        /* Icon styling */
+        .feature-icon {
+            transition: transform 0.3s ease;
+            color: var(--icon-color);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        /* Gradient text enhancement */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* Lead text enhancement */
+        .lead {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Section background */
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, rgba(139, 31, 63, 0.05), rgba(199, 37, 78, 0.05));
+        }
+
+        /* Feature description text */
+        .feature-description {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Icon in list items */
+        .feature-list li i {
+            color: var(--icon-color);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Section headers */
+        .section-header {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* Base transitions */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Improved contrast and readability */
+        body {
+            color: var(--text-dark);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        /* Enhanced card styling */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(139, 31, 63, 0.2);
+            background: var(--hover-bg);
+        }
+
+        /* Icon animations */
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        /* List item hover effects */
+        .feature-list li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-list li:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        /* Gradient text enhancement */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .text-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .feature-card:hover .text-gradient::after {
+            width: 100%;
+        }
+
+        /* Button enhancements */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-gradient:hover::before {
+            width: 100%;
+        }
+
+        :root {
+            --primary: #8B1F3F;
+            --secondary: #C7254E;
+            --light: #f8f9fa;
+            --bs-primary: #8B1F3F;
+            --bs-secondary: #C7254E;
+            --bs-bg-primay-rgb: 139, 31, 63;
         }
 
         :root,
@@ -455,35 +669,108 @@
         <section class="py-5">
             <div class="container px-4 py-5">
                 <h2 class="pb-2 border-bottom text-center text-gradient">How WinesBot Enhances Your Wine Shop</h2>
-                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                            <i class="fas fa-store text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Inventory Integration</h3>
-                            <p>WinesBot seamlessly connects with your shop's inventory, providing real-time, accurate
-                                recommendations based on your current stock.</p>
+                <div class="row g-4 py-5">
+                    <!-- Inventory Management -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="feature-card h-100 p-4">
+                            <h3 class="text-gradient mb-3">
+                                <i class="feature-icon fas fa-boxes me-2"></i>
+                                Inventory Management & Integration
+                            </h3>
+                            <p class="feature-description">
+                                <i class="feature-icon fas fa-comments me-2"></i>
+                                <i class="feature-icon fas fa-microphone me-2"></i>
+                                Both Chat and Audio Support
+                            </p>
+                            <ul class="feature-list list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Inventory review and updates</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Automated reorders to Suppliers/distributors</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Stock updates between team members / Departments</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Stock availability across warehouses and branches</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Demand Forecasting</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Real-time monitoring and more</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                            <i class="fas fa-users text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Customer Education</h3>
-                            <p>Educate customers about wine regions, grape varieties, and tasting notes, enhancing their
-                                wine knowledge and encouraging exploration.</p>
+
+                    <!-- Personalized Recommendations -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="feature-card h-100 p-4">
+                            <h3 class="text-gradient mb-3">
+                                <i class="feature-icon fas fa-wine-glass-alt text-primary me-2"></i>
+                                Personalized Recommendations
+                            </h3>
+                            <ul class="feature-list list-unstyled">
+                                <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i>Best Red Wine liked by America (or your country)</li>
+                                <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i>Floral Wine recommendations</li>
+                                <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i>Mild flavor white wine suggestions</li>
+                                <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i>Low alcohol wine options</li>
+                                <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i>Perfect wine pairings for dishes</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col d-flex align-items-start">
-                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
-                            <i class="fas fa-search text-primary"></i>
+
+                    <!-- Customer Engagement -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="feature-card h-100 p-4">
+                            <h3 class="text-gradient mb-3">
+                                <i class="feature-icon fas fa-users text-primary me-2"></i>
+                                Customer Engagement
+                            </h3>
+                            <p class="text-muted">
+                                <i class="feature-icon fas fa-comments me-2"></i>
+                                <i class="feature-icon fas fa-microphone me-2"></i>
+                                Both Chat and Audio
+                            </p>
+                            <ul class="feature-list list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Product queries</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Order Queries</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Shipment Queries</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Wine / Beer / Spirits Trivia</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Wine Recommendations</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Wine Tasting information</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Wine Expert Ratings & Reviews</li>
+                            </ul>
                         </div>
-                        <div>
-                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Personalized Recommendations</h3>
-                            <p>Offer tailored wine suggestions based on customer preferences, past purchases, and
-                                current inventory, increasing satisfaction and sales.</p>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="feature-card h-100 p-4">
+                            <h3 class="text-gradient mb-3">
+                                <i class="feature-icon fas fa-info-circle text-primary me-2"></i>
+                                Product Details & Education
+                            </h3>
+                            <ul class="feature-list list-unstyled">
+                                <li class="mb-2"><i class="fas fa-info-circle text-primary me-2"></i>Wine & Winery background information</li>
+                                <li class="mb-2"><i class="fas fa-search text-primary me-2"></i>Best Rated Wines</li>
+                                <li class="mb-2"><i class="fas fa-crown text-primary me-2"></i>Most Expensive Wine collections</li>
+                                <li class="mb-2"><i class="fas fa-utensils text-primary me-2"></i>Food Pairing recommendations</li>
+                                <li class="mb-2"><i class="fas fa-book-open text-primary me-2"></i>Educational content about wine regions</li>
+                                <li class="mb-2"><i class="fas fa-seedling text-primary me-2"></i>Information about grape varieties</li>
+                                <li class="mb-2"><i class="fas fa-glass-cheers text-primary me-2"></i>Detailed tasting notes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Wine Label Scanner -->
+                    <div class="col-12">
+                        <div class="feature-card p-4">
+                            <h3 class="text-gradient mb-3">
+                                <i class="feature-icon fas fa-camera text-primary me-2"></i>
+                                Wine Label Scanner
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="feature-list list-unstyled">
+                                        <li class="mb-2"><i class="fas fa-camera text-primary me-2"></i>Upload photos to get instant information about Wine/Beer/Spirit</li>
+                                        <li class="mb-2"><i class="fas fa-microphone text-primary me-2"></i>Interactive voice interface for hands-free operation</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <i class="feature-icon fas fa-qr-code fa-4x text-primary mb-3"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -521,16 +808,24 @@
         </section>
     </main>
 
-    <footer class="footer mt-auto py-3 bg-white border-top">
+    <footer class="footer mt-auto py-3 bg-light border-top">
         <div class="container">
             <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
                 <div class="col-md-4 d-flex align-items-center">
-                    <span class="text-muted"> 2024 WinesBot. All rights reserved.</span>
+                    <span class="text-muted"> 2025 WinesBot. All rights reserved.</span>
                 </div>
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                     <li class="ms-3"><a class="text-muted" href="#">Terms of Service</a></li>
-                    <li class="ms-3"><a class="text-muted" href="#">Privacy</a></li>
+                    <li class="ms-3"><a class="text-muted" href="#">Privacy Policy</a></li>
+                    <li class="ms-3"><a class="text-muted" href="#">Contact Us</a></li>
+                    <li class="ms-3"><a class="text-muted" href="#">About Us</a></li>
                 </ul>
+                <div class="social-icons col-md-4 d-flex justify-content-end">
+                    <a href="#" class="text-muted ms-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-muted ms-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-muted ms-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-muted ms-3"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
         </div>
     </footer>
