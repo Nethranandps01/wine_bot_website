@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinesBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B1F3F;
+            --secondary: #C7254E;
+            --light: #f8f9fa;
+            --bs-primary: #8B1F3F;
+            --bs-secondary: #C7254E;
+            --bs-bg-primay-rgb: 139, 31, 63;
+        }
+
+        :root,
+        [data-bs-theme=light] {
+            --bs-body-color: #8B1F3F;
+            --bs-body-bg: #f8f9fa;
+            --bs-body-color-rgb: 139, 31, 63;
+        }
+
+        .bg-primary {
+            background-color: #8B1F3F !important;
+        }
+
+        .btn-primary {
+            background-color: #8B1F3F;
+            border-color: #8B1F3F;
+        }
+
+        .text-primary {
+            color: #8B1F3F !important;
+        }
+
+        .bg-gradient-custom {
+            background: linear-gradient(to bottom right, rgba(139, 31, 63, 0.1), rgba(199, 37, 78, 0.1));
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-custom .text-gradient {
+            background: linear-gradient(to right, #ffd1df, #C7254E);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+
+        }
+        .lead {
+           color: #e5e5e5;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+            border: none;
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #7A1B37, #B32147);
+        }
+
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+        }
+
+        .from-[#8B1F3F] {
+            --tw-gradient-from: #8B1F3F;
+        }
+
+        .to-[#C7254E] {
+            --tw-gradient-to: #C7254E;
+        }
+
+        .chat-container {
+            width: 380px;
+            height: 600px;
+            position: relative;
+            background: #e5e5e5;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: visible;
+        }
+
+        .chat-header {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+
+        }
+
+        .chat-messages {
+            height: calc(100% - 120px);
+            /* overflow-y: auto; */
+            padding: 2rem;
+            /* background: var(--light); */
+            height: calc(100% - 120px);
+            /* overflow-y: auto; */
+            padding: 10px;
+            /* background: var(--light); */
+            margin: -50px;
+            margin-top: -25px;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            z-index: 2;
+            border: 2px solid white;
+            background: white;
+            box-shadow: 0 0 5px 1px #c7254d58;
+        }
+
+        .user .avatar {
+            /* margin-left: -10px; */
+        }
+
+        .bot .avatar {
+            /* margin-right: -10px; */
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            position: relative;
+            margin: 0 -5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .bot .message-content {
+            background: var(--secondary);
+            color: white;
+
+            margin-left: -15px;
+            border-top-left-radius: 5px;
+        }
+
+        .user .message-content {
+            background: white;
+
+            margin-right: -15px;
+            border-top-right-radius: 5px;
+        }
+
+        .chat-input {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .input-group .form-control {
+            border-radius: 25px;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--light);
+        }
+
+        .input-group .form-control:focus {
+            box-shadow: none;
+            border-color: var(--secondary);
+        }
+
+        /* Subtle scroll bar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        .hero-section {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(45deg, #1a0f1f, #2c1810);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .main-content { 
+            position: relative;
+            z-index: 2
+        }
+
+        .wine-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f1c4cd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            color: #f1c4cd;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: rgba(114, 47, 55, 0.9);
+            border: 2px solid #f1c4cd;
+            color: white;
+        }
+
+        .cta-button:hover {
+            background: #f1c4cd;
+            color: #2c1810;
+            transform: translateY(-2px);
+        }
+
+        .features-row {
+            position: relative;
+            z-index: 2;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f1c4cd;
+        }
+        .bg-white {
+    --bs-bg-opacity: 1;
+    background-color: rgb(240 228 231) !important;
+}
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <header class="py-3 bg-white border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <img src="logo.svg" alt="WinesBot Logo" width="240" height="40" class="me-2">
+                    <!-- <span class="fs-4 fw-bold text-gradient">WinesBot</span> -->
+                </a>
+
+                <ul class="nav col-12 col-lg-auto ms-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Features</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="hero-section">
+        <!-- Wine Waves SVG -->
+        <svg class="wine-waves" viewBox="0 0 800 400" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="wineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:rgba(114, 47, 55, 0.8)"/>
+                    <stop offset="100%" style="stop-color:rgba(88, 17, 26, 0.6)"/>
+                </linearGradient>
+                
+                <filter id="liquidEffect" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+                    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"/>
+                </filter>
+            </defs>
+
+            <!-- Main wine splash -->
+            <path id="wineSplash" 
+                  d="M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z"
+                  fill="url(#wineGradient)"
+                  filter="url(#liquidEffect)">
+                <animate 
+                    attributeName="d" 
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values="M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z;
+                            M0,150 Q200,180 400,150 T800,150 L800,400 L0,400 Z;
+                            M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z"
+                />
+            </path>
+
+            <!-- Bubbles -->
+            <g id="bubbles">
+                <circle cx="100" cy="200" r="4" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="200" to="100" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="300" cy="190" r="5" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="190" to="90" dur="3.2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3.2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="600" cy="185" r="5" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="185" to="85" dur="3.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3.5s" repeatCount="indefinite" />
+                </circle>
+            </g>
+        </svg>
+
+    </section>
+    <main class="flex-shrink-0 main-content">
+        <section class="py-5 bg-gradient-custom">
+            <div class="container px-4 py-5">
+                <div class="row align-items-center g-5 py-5">
+                    <div class="col-lg-7">
+                        <h1 class="display-5 fw-bold lh-1 mb-3 text-gradient">Elevate Your Wine Shop with AI Assistance
+                        </h1>
+                        <p class="lead">Empower your staff and delight customers with WinesBot, the AI sommelier that
+                            transforms wine shopping into an interactive and educational experience.</p>
+                        <img src="winesbot-icon.png" width="150" class="mb-5" />
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 btn-gradient">Get WinesBot
+                                for Your Shop</button>
+                            <button type="button" class="btn btn-outline-light btn-lg px-4">Schedule a Demo</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+
+                        <div class="chat-container">
+                            <div class="chat-header ">
+                                <h5 class="mb-0 text-light">WinesBot in action</h5>
+                            </div>
+
+                            <div class="chat-messages">
+
+
+                                <div class="message user">
+
+                                    <svg width="50" class="avatar" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <circle cx="12" cy="7" r="4" fill="#8B1F3F" />
+                                        <path
+                                            d="M4 20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20Z"
+                                            fill="#8B1F3F" />
+                                    </svg>
+                                    <div class="message-content">
+                                        I'm looking for a good red wine to pair with steak.
+
+                                    </div>
+                                </div>
+
+                                <div class="message bot">
+                                    <img src="winesbot-icon.jpeg" alt="Bot" class="avatar">
+                                    <div class="message-content">
+                                        I'd recommend a Cabernet Sauvignon or Malbec. These full-bodied reds pair
+                                        excellently with steak. Would
+                                        you
+                                        like
+                                        specific recommendations?
+                                    </div>
+                                </div>
+
+                                <div class="message user">
+                                    <svg width="50" class="avatar" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <circle cx="12" cy="7" r="4" fill="#8B1F3F" />
+                                        <path
+                                            d="M4 20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20Z"
+                                            fill="#8B1F3F" />
+                                    </svg>
+                                    <div class="message-content">
+                                        Yes, please suggest some specific wines
+                                    </div>
+                                </div>
+                                <div class="message bot">
+                                    <img src="winesbot-icon.jpeg" alt="Bot" class="avatar">
+                                    <div class="message-content">
+                                        Excellent! Based on our current inventory, I'd recommend the 2018 Napa Valley
+                                        Reserve Cabernet
+                                        Sauvignon. It
+                                        has rich
+                                        flavors of blackberry and cassis with hints of oak. It's located on Aisle 3,
+                                        Shelf B. Would you like me
+                                        to
+                                        call a staff
+                                        member to assist you further?
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="chat-input">
+                                <input type="text" class="form-control" placeholder="Type your message...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container px-4 py-5">
+                <h2 class="pb-2 border-bottom text-center text-gradient">How WinesBot Enhances Your Wine Shop</h2>
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                            <i class="fas fa-store text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Inventory Integration</h3>
+                            <p>WinesBot seamlessly connects with your shop's inventory, providing real-time, accurate
+                                recommendations based on your current stock.</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                            <i class="fas fa-users text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Customer Education</h3>
+                            <p>Educate customers about wine regions, grape varieties, and tasting notes, enhancing their
+                                wine knowledge and encouraging exploration.</p>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-start">
+                        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                            <i class="fas fa-search text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 fs-4 text-gradient">Personalized Recommendations</h3>
+                            <p>Offer tailored wine suggestions based on customer preferences, past purchases, and
+                                current inventory, increasing satisfaction and sales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-gradient-custom">
+            <div class="container px-4 py-5">
+                <div class="row align-items-center g-5 py-5">
+                    <div class="col-lg-7">
+                        <h2 class="display-5 fw-bold lh-1 mb-3 text-gradient">Empower Your Staff, Delight Your Customers
+                        </h2>
+                        <p class="lead">WinesBot acts as a knowledgeable assistant to your staff, helping them provide
+                            expert advice and personalized service to every customer, regardless of their wine
+                            expertise.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-wine-glass text-primary me-2"></i> Instant access to
+                                detailed wine information</li>
+                            <li class="mb-2"><i class="fas fa-glass-water text-primary me-2"></i> Food pairing
+                                suggestions for any dish</li>
+                            <li class="mb-2"><i class="fas fa-wine-bottle text-primary me-2"></i> Guided tastings and
+                                wine exploration</li>
+                        </ul>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 btn-gradient">Learn
+                                More</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <img src="winesbot.webp" alt="Wine shop staff using WinesBot"
+                            class="img-fluid rounded-3 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-white border-top">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="text-muted">© 2024 WinesBot. All rights reserved.</span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#">Terms of Service</a></li>
+                    <li class="ms-3"><a class="text-muted" href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

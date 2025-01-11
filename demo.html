@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheWineBase</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #4a0e0e;
+      background-color: #f8f4f3;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #FFF;
+      color: #4a0e0e;
+      padding: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo img {
+      max-width: 80%;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 1.5rem;
+    }
+
+    .nav-links a:hover {
+      color: #d4af37;
+    }
+
+    /* Hero section styles */
+    .hero {
+      height: 80vh;
+      background-image: url('images/wine5.jpeg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #d4af37;
+      color: #4a0e0e;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #b8960f;
+    }
+
+    /* Featured wines section styles */
+    .featured-wines {
+      padding: 4rem 1rem;
+      background-color: white;
+    }
+
+    .featured-wines h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .wine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .wine-card {
+      background-color: #f8f4f3;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .wine-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .wine-info {
+      padding: 1rem;
+    }
+
+    .wine-info h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Newsletter section styles */
+    .newsletter {
+      background-color: #4a0e0e;
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      margin-bottom: 2rem;
+    }
+
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter input[type="email"] {
+      flex-grow: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px 0 0 5px;
+    }
+
+    .newsletter button {
+      background-color: #d4af37;
+      color: #4a0e0e;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .newsletter button:hover {
+      background-color: #b8960f;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #2c0606;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .social-links a:hover {
+      color: #d4af37;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .wine-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+      }
+
+      .newsletter input[type="email"],
+      .newsletter button {
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      .newsletter button {
+        margin-top: 1rem;
+      }
+    }
+
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 100px;
+      background-color: #822121;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+      z-index: 1000;
+    }
+    .chat-button button {
+      border: none;
+      padding: 10px;
+    }
+
+    .chat-button:hover {
+      background-color: #C7254E;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="images/Logo_R_Dark.png" alt="Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#wines">Our Wines</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Discover Exquisite Wines</h1>
+        <p>Indulge in the finest selections from our vineyard</p>
+        <a href="#wines" class="btn">Explore Our Collection</a>
+      </div>
+    </section>
+
+    <section id="wines" class="featured-wines">
+      <h2>Featured Wines</h2>
+      <div class="wine-grid">
+        <div class="wine-card">
+          <img src="images/wine7.jpeg" alt="Crimson Reserve">
+          <div class="wine-info">
+            <h3>Crimson Reserve</h3>
+            <p>Vintage: 2018</p>
+          </div>
+        </div>
+        <div class="wine-card">
+          <img src="images/wine1.jpeg" alt="Golden Chardonnay">
+          <div class="wine-info">
+            <h3>Golden Chardonnay</h3>
+            <p>Vintage: 2020</p>
+          </div>
+        </div>
+        <div class="wine-card">
+          <img src="images/wine9.jpeg" alt="Rosé Delight">
+          <div class="wine-info">
+            <h3>Rosé Delight</h3>
+            <p>Vintage: 2021</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+      <h2>Join Our Wine Club</h2>
+      <p>Subscribe to our newsletter for exclusive offers and wine tasting events</p>
+      <form>
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="audioModal" tabindex="-1" aria-labelledby="audioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="audioModalLabel">Audio Chat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://acerlabz.com/audio" style="width: 100%; height: 400px; border: none;"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-button">
+    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#audioModal">
+      <img width="40" height="40" src="images/chat_voice.svg" alt="Chat Voice Icon">
+    </button>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 TheWineBase. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Facebook">&#xf09a;</a>
+      <a href="#" aria-label="Instagram">&#xf16d;</a>
+      <a href="#" aria-label="Twitter">&#xf099;</a>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://rootbot.pages.dev/widget/js/index.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const bot = urlParams.get('bot') || '66bb2d4e00abdc3e79c4b02f';
+    const botTitle = urlParams.get('title') || 'Aidnik';
+    const botButtonColor = urlParams.get('theme');
+    initChatWidget({
+      buttonSize: '60px',
+      buttonColor: '#832121',
+      buttonIconColor: '#ffffff',
+      botId: '6721f922baf0255f0e4fe50c',
+      title: "Wine Bot",
+      theme: '#832121',
+    })
+  </script>
+</body>
+
+</html>
