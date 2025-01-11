@@ -47,6 +47,16 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .bg-gradient-custom .text-gradient {
+            background: linear-gradient(to right, #ffd1df, #C7254E);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+
+        }
+        .lead {
+           color: #e5e5e5;
+        }
+
         .btn-gradient {
             background: linear-gradient(to right, #8B1F3F, #C7254E);
             border: none;
@@ -190,6 +200,99 @@
             background: rgba(0, 0, 0, 0.1);
             border-radius: 3px;
         }
+        .hero-section {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(45deg, #1a0f1f, #2c1810);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .main-content { 
+            position: relative;
+            z-index: 2
+        }
+
+        .wine-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f1c4cd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            color: #f1c4cd;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: rgba(114, 47, 55, 0.9);
+            border: 2px solid #f1c4cd;
+            color: white;
+        }
+
+        .cta-button:hover {
+            background: #f1c4cd;
+            color: #2c1810;
+            transform: translateY(-2px);
+        }
+
+        .features-row {
+            position: relative;
+            z-index: 2;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f1c4cd;
+        }
+        .bg-white {
+    --bs-bg-opacity: 1;
+    background-color: rgb(240 228 231) !important;
+}
     </style>
 </head>
 
@@ -210,8 +313,55 @@
             </div>
         </div>
     </header>
+    <section class="hero-section">
+        <!-- Wine Waves SVG -->
+        <svg class="wine-waves" viewBox="0 0 800 400" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="wineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:rgba(114, 47, 55, 0.8)"/>
+                    <stop offset="100%" style="stop-color:rgba(88, 17, 26, 0.6)"/>
+                </linearGradient>
+                
+                <filter id="liquidEffect" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+                    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"/>
+                </filter>
+            </defs>
 
-    <main class="flex-shrink-0">
+            <!-- Main wine splash -->
+            <path id="wineSplash" 
+                  d="M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z"
+                  fill="url(#wineGradient)"
+                  filter="url(#liquidEffect)">
+                <animate 
+                    attributeName="d" 
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values="M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z;
+                            M0,150 Q200,180 400,150 T800,150 L800,400 L0,400 Z;
+                            M0,150 Q200,110 400,150 T800,150 L800,400 L0,400 Z"
+                />
+            </path>
+
+            <!-- Bubbles -->
+            <g id="bubbles">
+                <circle cx="100" cy="200" r="4" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="200" to="100" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="300" cy="190" r="5" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="190" to="90" dur="3.2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3.2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="600" cy="185" r="5" fill="rgba(255,255,255,0.5)">
+                    <animate attributeName="cy" from="185" to="85" dur="3.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" from="0.5" to="0" dur="3.5s" repeatCount="indefinite" />
+                </circle>
+            </g>
+        </svg>
+
+    </section>
+    <main class="flex-shrink-0 main-content">
         <section class="py-5 bg-gradient-custom">
             <div class="container px-4 py-5">
                 <div class="row align-items-center g-5 py-5">
@@ -225,7 +375,7 @@
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                             <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 btn-gradient">Get WinesBot
                                 for Your Shop</button>
-                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Schedule a Demo</button>
+                            <button type="button" class="btn btn-outline-light btn-lg px-4">Schedule a Demo</button>
                         </div>
                     </div>
                     <div class="col-lg-5">
