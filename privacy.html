@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinesBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B1F3F;
+            --secondary: #C7254E;
+            --light: #f8f9fa;
+            --bs-primary: #8B1F3F;
+            --bs-secondary: #C7254E;
+            --bs-bg-primay-rgb: 139, 31, 63;
+            --card-bg: #ffffff;
+            --text-dark: #1a2634;
+            --text-muted: #495057;
+            --hover-bg: rgba(139, 31, 63, 0.08);
+            --list-text: #2c3e50;
+            --card-border: rgba(139, 31, 63, 0.15);
+            --icon-color: #8B1F3F;
+        }
+
+        /* Base text colors */
+        body {
+            color: var(--text-dark);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+        }
+
+        /* Enhanced card styling */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(139, 31, 63, 0.2);
+            background: var(--hover-bg);
+        }
+
+        /* List item styling */
+        .feature-list li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            color: var(--list-text);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list li:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        /* Icon styling */
+        .feature-icon {
+            transition: transform 0.3s ease;
+            color: var(--icon-color);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        /* Gradient text enhancement */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* Lead text enhancement */
+        .lead {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Section background */
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, rgba(139, 31, 63, 0.05), rgba(199, 37, 78, 0.05));
+        }
+
+        /* Feature description text */
+        .feature-description {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Icon in list items */
+        .feature-list li i {
+            color: var(--icon-color);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Section headers */
+        .section-header {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* Base transitions */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Improved contrast and readability */
+        body {
+            color: var(--text-dark);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        /* Enhanced card styling */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(139, 31, 63, 0.2);
+            background: var(--hover-bg);
+        }
+
+        /* Icon animations */
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        /* List item hover effects */
+        .feature-list li {
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-list li:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        /* Gradient text enhancement */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .text-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .feature-card:hover .text-gradient::after {
+            width: 100%;
+        }
+
+        /* Button enhancements */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-gradient:hover::before {
+            width: 100%;
+        }
+
+        :root {
+            --primary: #8B1F3F;
+            --secondary: #C7254E;
+            --light: #f8f9fa;
+            --bs-primary: #8B1F3F;
+            --bs-secondary: #C7254E;
+            --bs-bg-primay-rgb: 139, 31, 63;
+        }
+
+        :root,
+        [data-bs-theme=light] {
+            --bs-body-color: #8B1F3F;
+            --bs-body-bg: #f8f9fa;
+            --bs-body-color-rgb: 139, 31, 63;
+        }
+
+        .bg-primary {
+            background-color: #8B1F3F !important;
+        }
+
+        .btn-primary {
+            background-color: #8B1F3F;
+            border-color: #8B1F3F;
+        }
+
+        .text-primary {
+            color: #8B1F3F !important;
+        }
+
+        .bg-gradient-custom {
+            background: linear-gradient(to bottom right, rgba(139, 31, 63, 0.1), rgba(199, 37, 78, 0.1));
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-custom .text-gradient {
+            background: linear-gradient(to right, #ffd1df, #C7254E);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+
+        }
+        .lead {
+           color: #e5e5e5;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+            border: none;
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #7A1B37, #B32147);
+        }
+
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+        }
+
+        .from-[#8B1F3F] {
+            --tw-gradient-from: #8B1F3F;
+        }
+
+        .to-[#C7254E] {
+            --tw-gradient-to: #C7254E;
+        }
+
+        .chat-container {
+            width: 380px;
+            height: 600px;
+            position: relative;
+            background: #e5e5e5;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: visible;
+        }
+
+        .chat-header {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background: linear-gradient(to right, #8B1F3F, #C7254E);
+
+        }
+
+        .chat-messages {
+            height: calc(100% - 120px);
+            /* overflow-y: auto; */
+            padding: 2rem;
+            /* background: var(--light); */
+            height: calc(100% - 120px);
+            /* overflow-y: auto; */
+            padding: 10px;
+            /* background: var(--light); */
+            margin: -50px;
+            margin-top: -25px;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            z-index: 2;
+            border: 2px solid white;
+            background: white;
+            box-shadow: 0 0 5px 1px #c7254d58;
+        }
+
+        .user .avatar {
+            /* margin-left: -10px; */
+        }
+
+        .bot .avatar {
+            /* margin-right: -10px; */
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            position: relative;
+            margin: 0 -5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .bot .message-content {
+            background: var(--secondary);
+            color: white;
+
+            margin-left: -15px;
+            border-top-left-radius: 5px;
+        }
+
+        .user .message-content {
+            background: white;
+
+            margin-right: -15px;
+            border-top-right-radius: 5px;
+        }
+
+        .chat-input {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .input-group .form-control {
+            border-radius: 25px;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--light);
+        }
+
+        .input-group .form-control:focus {
+            box-shadow: none;
+            border-color: var(--secondary);
+        }
+
+        /* Subtle scroll bar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        .hero-section {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(45deg, #1a0f1f, #2c1810);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .main-content { 
+            position: relative;
+            z-index: 2
+        }
+
+        .wine-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f1c4cd, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            color: #f1c4cd;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: rgba(114, 47, 55, 0.9);
+            border: 2px solid #f1c4cd;
+            color: white;
+        }
+
+        .cta-button:hover {
+            background: #f1c4cd;
+            color: #2c1810;
+            transform: translateY(-2px);
+        }
+
+        .features-row {
+            position: relative;
+            z-index: 2;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f1c4cd;
+        }
+        .bg-white {
+    --bs-bg-opacity: 1;
+    background-color: rgb(240 228 231) !important;
+}
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <header class="py-3 bg-white border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <img src="logo.svg" alt="WinesBot Logo" width="240" height="40" class="me-2">
+                    <!-- <span class="fs-4 fw-bold text-gradient">WinesBot</span> -->
+                </a>
+
+                <ul class="nav col-12 col-lg-auto ms-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#section1" class="nav-link px-2 link-secondary">Features</a></li>
+                    <li><a href="contact.html" class="nav-link px-2 link-dark">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="flex-shrink-0 main-content container pt-5">
+        <h1 class="text-gradient mb-4">Privacy Policy</h1>
+        <p>Last Updated: 01-January-2024</p>
+        <p>This Privacy Policy (“Policy”) describes how CONSYSTENT INFOTECH PRIVATE LIMITED (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, and discloses personal information when providing data processing services. This Policy is in compliance with the General Data Protection Regulation (GDPR) and other applicable data protection laws.</p>
+        <h2>Information We Collect</h2>
+        <ol>
+            <li><strong>Personal Information:</strong> We collect personal information that is necessary for providing our data processing services. This may include, but is not limited to, names, contact details, identification information, and any other data provided by our clients or their authorized representatives.</li>
+            <li><strong>Sensitive Data:</strong> We may also process sensitive personal data when explicitly provided by our clients for the purpose of providing our services. We handle sensitive data with utmost care and in compliance with applicable data protection laws.</li>
+        </ol>
+        <h2>Use of Information</h2>
+        <ol>
+            <li><strong>Data Processing:</strong> We process personal information as a data processor on behalf of our clients. We process the data solely for the purpose of providing our data processing services in accordance with our agreement with the client.</li>
+            <li><strong>Legal Basis:</strong> We process personal information based on the legal bases specified in Article 6 of the GDPR, including the necessity of processing for the performance of a contract, compliance with legal obligations, and legitimate interests pursued by the client or us.</li>
+            <li><strong>Data Security:</strong> We implement appropriate technical and organizational measures to protect personal information from unauthorized access, loss, or alteration. We maintain strict security protocols and conduct regular audits to ensure data security.</li>
+        </ol>
+        <h2>Data Retention</h2>
+        <p>We retain personal information only for as long as necessary to fulfill the purposes outlined in our agreement with the client or as required by applicable laws and regulations. Once the retention period expires, we securely dispose of or anonymize the data.</p>
+        <h2>Data Disclosure and Transfers</h2>
+        <ol>
+            <li><strong>Data Disclosure:</strong> We do not disclose personal information to third parties unless authorized by the client or required by law. Any disclosure made is limited to the purpose of providing our data processing services and is subject to appropriate safeguards.</li>
+            <li><strong>International Transfers:</strong> If personal information is transferred to countries outside the European Economic Area (EEA), we ensure that appropriate safeguards, such as standard contractual clauses or adequacy decisions, are in place to protect the data in accordance with applicable data protection laws.</li>
+        </ol>
+        <h2>Client Responsibilities</h2>
+        <ol>
+            <li><strong>Data Controller Obligations:</strong> Our clients, as data controllers, are responsible for ensuring a valid legal basis for processing personal information and obtaining necessary consents from data subjects where applicable. They are also responsible for providing any necessary notices to data subjects regarding data processing activities.</li>
+            <li><strong>Instructions and Compliance:</strong> Our clients are responsible for providing clear instructions for data processing and ensuring that our services are used in compliance with applicable data protection laws and regulations.</li>
+        </ol>
+        <h2>Individual Rights</h2>
+        <p>We support our clients in fulfilling data subjects' rights as specified in the GDPR, including the right to access, rectification, erasure, restriction, data portability, and objection. Data subjects should direct their requests to the respective client, the data controller.</p>
+        <h2>Changes to this Policy</h2>
+        <p>We reserve the right to modify or update this Privacy Policy at any time. We will provide notice of any material changes through appropriate means. Your continued use of our services after the effective date of the updated Policy constitutes your acceptance of the changes.</p>
+        <h2>Contact Us</h2>
+        <p>If you have any questions or concerns regarding these Terms, please contact us using the information provided below.</p>
+        <p>Email: enquiry@consystentinfo.com</p>
+        <p>Phone: +91-776-031-9999</p>
+    </main>
+</body>
+</html>
