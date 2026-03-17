@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinesBot - Your Personal Sommelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <div class="header-main">
+                <div class="bot-info">
+                    <img src="winesbot-icon.jpeg" alt="WinesBot" class="bot-avatar">
+                    <div>
+                        <h1>WinesBot</h1>
+                        <p class="status">Online | Wine Specialist</p>
+                    </div>
+                </div>
+                <button id="close-widget" class="close-btn">&times;</button>
+            </div>
+        </header>
+
+        <main id="chat-window">
+            <div class="message bot">
+                <div class="content">
+                    Hello! I'm WinesBot. I'm here to help you with everything wine. What can I pour for you today? 🍷
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="voice-controls">
+                <button id="voice-btn" class="voice-inactive">
+                    <span class="icon">🎤</span>
+                </button>
+                <span id="voice-status">Tap to speak</span>
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ask about wines...">
+                <button id="send-btn">Send</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
